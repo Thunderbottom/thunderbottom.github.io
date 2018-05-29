@@ -6,9 +6,37 @@
     <description>Recent content in Tags on Chinmay Pai</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Tue, 29 May 2018 03:30:18 +0000</lastBuildDate>
     
 	<atom:link href="https://thunderbottom.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Machine Learning</title>
+      <link>https://thunderbottom.github.io/tags/machine-learning/</link>
+      <pubDate>Tue, 29 May 2018 03:30:18 +0000</pubDate>
+      
+      <guid>https://thunderbottom.github.io/tags/machine-learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Python</title>
+      <link>https://thunderbottom.github.io/tags/python/</link>
+      <pubDate>Tue, 29 May 2018 03:30:18 +0000</pubDate>
+      
+      <guid>https://thunderbottom.github.io/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tensorflow</title>
+      <link>https://thunderbottom.github.io/tags/tensorflow/</link>
+      <pubDate>Tue, 29 May 2018 03:30:18 +0000</pubDate>
+      
+      <guid>https://thunderbottom.github.io/tags/tensorflow/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>
