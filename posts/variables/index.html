@@ -121,7 +121,7 @@ Tensor(<span style="color:#0ff;font-weight:bold">&#34;y/read:0&#34;</span>, shap
 
 <h3 id="generating-a-tensorflow-computational-graph">Generating a Tensorflow computational graph</h3>
 
-<p>We want to generate a graph for all the variables in the code. To do that, we use <a href="https://www.tensorflow.org/versions/master/api_docs/python/tf/global_variables_initializer" title="Tensorflow Global Variables Initializer">tf.global_variables_initializer()</a>. This is a TensorFlow helper function which initializes all the variables by creating a graph of dependencies and relationships between the variables when executed.<sup><a href="#references">1</a></sup> There also exists an alternative if you want to initialize only a select bunch of variables.<sup><a href="#references">2</a></sup></p>
+<p>We want to generate a graph for all the variables in the code. To do that, we use <a href="https://www.tensorflow.org/versions/master/api_docs/python/tf/global_variables_initializer" title="Tensorflow Global Variables Initializer">tf.global_variables_initializer()</a>. This is a TensorFlow helper function which initializes all the variables by creating a graph of dependencies and relationships between the variables when executed.<sup><a href="https://thunderbottom.github.io/posts/variables/#references">1</a></sup> There also exists an alternative if you want to initialize only a select bunch of variables.<sup><a href="https://thunderbottom.github.io/posts/variables/#references">2</a></sup></p>
 
 <p>Okay, now on with initializing the variables:</p>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">In  [<span style="color:#ff0;font-weight:bold">9</span>]: <span style="color:#fff;font-weight:bold">import</span> tensorflow <span style="color:#fff;font-weight:bold">as</span> tf
@@ -153,7 +153,7 @@ op: <span style="color:#0ff;font-weight:bold">&#34;NoOp&#34;</span>
 <span style="color:#ff0;font-weight:bold">15</span></code></pre></div>
 <p><em><strong>Do we need to do this every time we create a session?</strong> Yes, and no.</em></p>
 
-<p>We need to execute the variable every time it is updated, but we initialize the variables just once. It is not recommended to reinitialize variables because doing so generates duplicate operations.<sup><a href="#references">3</a></sup></p>
+<p>We need to execute the variable every time it is updated, but we initialize the variables just once. It is not recommended to reinitialize the variables all over because doing so generates duplicate operations.<sup><a href="https://thunderbottom.github.io/posts/variables/#references">3</a></sup></p>
 
 <p><strong><em>Can we update the variables in the session?</em></strong> <em>Yes, that can be done.</em></p>
 
