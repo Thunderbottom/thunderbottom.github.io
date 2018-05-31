@@ -18,8 +18,9 @@
       
       <guid>https://thunderbottom.github.io/posts/variables/</guid>
       <description>Hello there, today we are going to learn about TensorFlow variables.
-What are Tensorflow Variables? TensorFlow variables, just like Python variables, are used to store, reference and manipulate data. Although functionally, they are very different. This article will try to help you understand what a TensorFlow variable is and the things that we need to know before these variables can process information.
-Creating Tensorflow Variables Creating and assigning variables in Python is really easy:</description>
+What are Tensorflow Variables? TensorFlow variables, just like Python variables, are used to store, reference and manipulate data. Although, functionally they are very different. This article will try to help you understand what a TensorFlow variable is and how it works.
+Creating Tensorflow Variables Creating and assigning variables in Python is really easy:
+In [1]: x = 5 In [2]: y = x * 3 In [3]: print(y) 15 Easy, right?</description>
     </item>
     
   </channel>

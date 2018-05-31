@@ -75,7 +75,7 @@
 
 <h3 id="what-are-tensorflow-variables">What are Tensorflow Variables?</h3>
 
-<p>TensorFlow variables, just like Python variables, are used to store, reference and manipulate data. Although functionally, they are very different. This article will try to help you understand what a TensorFlow variable is and the things that we need to know before these variables can process information.</p>
+<p>TensorFlow variables, just like Python variables, are used to store, reference and manipulate data. Although, functionally they are very different. This article will try to help you understand what a TensorFlow variable is and how it works.</p>
 
 <h3 id="creating-tensorflow-variables">Creating Tensorflow Variables</h3>
 
@@ -84,44 +84,46 @@
 In [<span style="color:#ff0;font-weight:bold">2</span>]: y = x * <span style="color:#ff0;font-weight:bold">3</span>
 In [<span style="color:#ff0;font-weight:bold">3</span>]: <span style="color:#fff;font-weight:bold">print</span>(y)
 <span style="color:#ff0;font-weight:bold">15</span></code></pre></div>
-<p>Easy, right? Here&rsquo;s a catch though &ndash; the Tensorflow variables initialization syntax is a <em>little</em> different than this. In TensorFlow, you need to create a variable by using the <a href="https://www.tensorflow.org/api_docs/python/tf/Variable" title="TensorFlow variable">tf.Variable()</a> constructor. It takes the variable initialization value as a parameter and has an optional keyword parameter to assign a internal name to the variable, different than the actual variable name that you define. This name comes in handy when you need to save and restore your variable instances while using TensorFlow.</p>
+<p>Easy, right? Here&rsquo;s a catch though &ndash; the Tensorflow variables initialization is a <em>bit</em> different than this. In TensorFlow, you need to create a variable by using the <a href="https://www.tensorflow.org/api_docs/python/tf/Variable" title="TensorFlow variable">tf.Variable()</a> constructor. The constructor takes the variable initialization value as a parameter and has an optional keyword parameter &ldquo;name&rdquo; to assign a internal name to the variable, different than the actual variable name that you define for assignment. This name comes in handy when you need to save and restore your variable instances while using TensorFlow.</p>
 
-<p>We’ll talk more about variable naming in a different post, maybe. Meanwhile, here’s what the variable constructor looks like:</p>
+<p>We’ll talk more about variable naming in a different post, maybe. Meanwhile, here’s what the tf.variable() constructor looks like:</p>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">In [<span style="color:#ff0;font-weight:bold">4</span>]: <span style="color:#fff;font-weight:bold">import</span> tensorflow <span style="color:#fff;font-weight:bold">as</span> tf
 In [<span style="color:#ff0;font-weight:bold">5</span>]: w = tf.Variable(&lt;initial-value&gt;, name=&lt;optional-name&gt;)</code></pre></div>
 <p>Alright, let’s try creating a Tensorflow variable:</p>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">In [<span style="color:#ff0;font-weight:bold">6</span>]: x = tf.constant(<span style="color:#ff0;font-weight:bold">5</span>, name=<span style="color:#0ff;font-weight:bold">&#39;x&#39;</span>)
 In [<span style="color:#ff0;font-weight:bold">7</span>]: y = tf.Variable(x * <span style="color:#ff0;font-weight:bold">3</span>, name=<span style="color:#0ff;font-weight:bold">&#39;y&#39;</span>)</code></pre></div>
-<p>Here, we’ve created a <a href="https://www.tensorflow.org/api_docs/python/tf/constant" title="TensorFlow constant">tf.constant</a> with a value ‘5’. We take that constant and use it to compute a variable y. Although quite the same thing, this doesn&rsquo;t look similar to the variables that we created before.</p>
+<p>Here, we’ve created a <a href="https://www.tensorflow.org/api_docs/python/tf/constant" title="TensorFlow constant">tf.constant</a> with a value ‘5’. Mathematically, a constant is a fixed value that never changes. We take this constant and use it to compute another variable y. Although quite the same thing, this syntax does not bear a similarity to the variables that we defined before.</p>
 
-<p>What is the difference though? Let’s try printing the value of the computed variable:</p>
+<p>What is the difference though? Let’s try printing the value of variable y:</p>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">In [<span style="color:#ff0;font-weight:bold">8</span>]: <span style="color:#fff;font-weight:bold">print</span>(y)
 Tensor(<span style="color:#0ff;font-weight:bold">&#34;y/read:0&#34;</span>, shape=(), dtype=int32)</code></pre></div>
-<p>As you can see, a TensorFlow variable does not compute any values when initialized. This is because TensorFlow handles variables differently.</p>
+<p>Oddly enough, the variable y does not contain the expected output yet, as TensorFlow variable does not compute any values when initialized. This is because TensorFlow handles variables differently.</p>
 
 <h6 id="in-what-ways-is-a-tensorflow-variable-different">In what ways is a Tensorflow variable different?</h6>
 
-<p>Unlike Python variables, there is no computation taking place at runtime. Instead, TensorFlow takes as input all the variables and constants as functions, and stores them as tensors. Using these tensors, Tensorflow creates a graph which is then used to compute the output at the time of session execution.</p>
+<p>Unlike Python variables, there is no computation taking place at runtime. Instead, TensorFlow takes as input all the variables and constants as functions, and stores them as tensors. Using these tensors, Tensorflow generates a computational graph which is then used to compute the output for the variables defined in the graph at the time of session execution.</p>
 
 <h6 id="what-is-a-computational-graph">What is a computational graph?</h6>
 
-<p>A computational graph is a group or series of related TensorFlow operations. Consider it as a data structure graph with nodes connected to each other through links, where each node may take zero or more tensors as input. Each connected node produces a tensor as an output and passes it up ahead to the next connected node as an input. This continues until it reaches the root node, or till the end of the computational graph.</p>
+<p>A computational graph is a group or series of related TensorFlow operations &ndash; Consider it as a data structure graph with nodes connected to each other through links, where each node may take zero or more tensors as input. Each connected node produces a tensor as an output and passes it up ahead to the next connected node as an input. This continues until it reaches the root node, or till the end of the computational graph.</p>
 
 <h6 id="what-are-tensors">What are tensors?</h6>
 
-<p>Tensors are nothing but objects that describe relations between vectors and other Tensors. Tensors represent a computational output of any operation. From the documentation:</p>
+<p>Tensors are nothing but matrix-like objects that describe relations between scalars, vectors and other tensors. Using these tensors, we can represent the computational output of any operation. From the documentation:</p>
 
 <blockquote>
 <p>&ldquo;A Tensor is a symbolic handle to one of the outputs of an Operation. It does not hold the values of that operation&rsquo;s output, but instead provides a means of computing those values in a TensorFlow <a href="https://www.tensorflow.org/api_docs/python/tf/Session" title="Tensorflow Session">tf.Session()</a>&ldquo;</p>
 </blockquote>
 
-<p>Simply put, tensors are a structure which do not hold any computational value. Instead, they contain information on how to compute the given values, or basically states the flow of tensors (<em>*slow claps*</em>). To actually transform these tensors into a graph (or graphs), we need to initialize the variables, which creates a tensor object of the graph. A tensor object is nothing but a set of operations which may have tensors at input and output.</p>
+<p>Simply put, tensors are a type of data structures which do not hold any computational value in them. Instead, they contain information on how to compute the given values, or basically states the flow of tensors (<em>*slow claps*</em>). To actually transform these tensors into a graph (or graphs), we need to initialize the variables, which creates a tensor object of the graph. A tensor object is nothing but a set of operations which may have tensors at input and output.</p>
 
-<p>Multiple such related tensor objects make up a computational graph. We then execute this graph in a session to calculate the value for the initialized variables, and this session needs to be executed each time the value of the variables is to be updated.</p>
+<p>Multiple such related tensor objects make up a computational graph. We then execute this graph in a session to calculate the value for the initialized variables, and the session needs to be executed each time the value of the variables is to be updated.</p>
 
 <h3 id="generating-a-tensorflow-computational-graph">Generating a Tensorflow computational graph</h3>
 
-<p>We want to generate a graph for all the variables in the code. To do that, we use <a href="https://www.tensorflow.org/versions/master/api_docs/python/tf/global_variables_initializer" title="Tensorflow Global Variables Initializer">tf.global_variables_initializer()</a>. This is a TensorFlow helper function which initializes all the variables by creating a graph of dependencies and relationships between the variables when executed.<sup><a href="https://thunderbottom.github.io/posts/variables/#references">1</a></sup> There also exists an alternative if you want to initialize only a select bunch of variables.<sup><a href="https://thunderbottom.github.io/posts/variables/#references">2</a></sup></p>
+<p>Now that we know what a computational graph is and what it is made of, we need to generate a graph for all the variables in the code &ndash; as both the constant and variable that we defined are interrelated. To do so, we use <a href="https://www.tensorflow.org/versions/master/api_docs/python/tf/global_variables_initializer" title="Tensorflow Global Variables Initializer">tf.global_variables_initializer()</a>. This is a TensorFlow helper function which initializes all the variables by creating a graph of dependencies and relationships between the variables when executed.<sup><a href="https://thunderbottom.github.io/posts/variables/#references">1</a></sup> There also exists an alternative if you want to initialize only a select bunch of variables.<sup><a href="https://thunderbottom.github.io/posts/variables/#references">2</a></sup></p>
+
+<p>This helper function does not require any parameters to execute because it initializes all the global variables defined in the code.</p>
 
 <p>Okay, now on with initializing the variables:</p>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">In  [<span style="color:#ff0;font-weight:bold">9</span>]: <span style="color:#fff;font-weight:bold">import</span> tensorflow <span style="color:#fff;font-weight:bold">as</span> tf
@@ -130,38 +132,42 @@ In [<span style="color:#ff0;font-weight:bold">11</span>]: y = tf.Variable(x * <s
 In [<span style="color:#ff0;font-weight:bold">12</span>]: compute = tf.global_variables_initializer()</code></pre></div>
 <p>The code doesn’t actually compute anything yet. This is because we have only initialized the graph so far.</p>
 
-<p>Let us check what compute contains:</p>
+<p>Let us check what the variable compute contains:</p>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">In [<span style="color:#ff0;font-weight:bold">13</span>]: <span style="color:#fff;font-weight:bold">print</span>(compute)
 name: <span style="color:#0ff;font-weight:bold">&#34;init&#34;</span>
 op: <span style="color:#0ff;font-weight:bold">&#34;NoOp&#34;</span>
 <span style="color:#fff;font-weight:bold">input</span>: <span style="color:#0ff;font-weight:bold">&#34;^Variable/Assign&#34;</span>
 <span style="color:#fff;font-weight:bold">input</span>: <span style="color:#0ff;font-weight:bold">&#34;^y/Assign&#34;</span></code></pre></div>
-<p>Although the output doesn&rsquo;t really make much sense, we have generated the computational graph by initializing the variables. Now to make TensorFlow compute the value for our operation, we need to execute the computational graph and the variable y.</p>
+<p>Although the output doesn&rsquo;t really make much sense, it states that the compute variable contains a variable initializer function. This also means that we have generated the computational graph by initializing the variables. Now to make TensorFlow compute the value for our operation, we need to execute the computational graph and the variable y.</p>
 
 <h3 id="executing-the-tensorflow-computational-graph">Executing the TensorFlow computational graph</h3>
 
-<p>To execute a graph, we first need to create a TensorFlow session wherein the output for the initialized variables can be computed. A session in TensorFlow is an instance for executing initialized variables. From the documentation:</p>
+<p>To execute a graph, we first need to create a TensorFlow session wherein the output for the initialized variables can be computed. A session in TensorFlow is an instance for executing initialized variables and other operations that one may wish to perform during the session. From the documentation:</p>
 
 <blockquote>
 <p>&ldquo;A Session instance encapsulates the environment in which Operations in a Graph are executed to compute Tensors.&rdquo;</p>
 </blockquote>
 
-<p>We can create a session with <a href="https://www.tensorflow.org/api_docs/python/tf/Session" title="Tensorflow Session">tf.Session()</a> and use it to execute the graph. We also need to explicitly close the session after we’re done using it. A workaround to closing the session is to create a session using the <a href="https://docs.python.org/3/reference/compound_stmts.html#with">with</a> statement in Python. Then, we can compute the graph and execute the variable y.</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">In[<span style="color:#ff0;font-weight:bold">14</span>]: <span style="color:#fff;font-weight:bold">with</span> tf.Session() <span style="color:#fff;font-weight:bold">as</span> sess:
+<p>We can create a session with <a href="https://www.tensorflow.org/api_docs/python/tf/Session" title="Tensorflow Session">tf.Session()</a> and use it to execute the graph. We also need to explicitly close the session after we’re done using it as doing so is considered to be a &lsquo;good practice&rsquo;. A workaround to manually closing the session is to create a session using the <a href="https://docs.python.org/3/reference/compound_stmts.html#with">with</a> statement in Python. Then, we can compute the graph and execute the variable y.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">In [<span style="color:#ff0;font-weight:bold">14</span>]: <span style="color:#fff;font-weight:bold">with</span> tf.Session() <span style="color:#fff;font-weight:bold">as</span> sess:
             sess.run(compute)
             <span style="color:#fff;font-weight:bold">print</span>(sess.run(y))
 <span style="color:#ff0;font-weight:bold">15</span></code></pre></div>
-<p><em><strong>Do we need to do this every time we create a session?</strong> Yes, and no.</em></p>
+<p>Here, we first create a TensorFlow session named sess, and run the compute variable &ndash; the variable which contains a function to initialize all the variables that we defined, and the variable y. It is not always required to create a variable for tf.global_variables_initializer, but has been done for ease and understanding in this blog post. Also, it is also not required that you run the initializer unless there is a TensorFlow variable or a placeholder defined in the code. As an example:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">In [<span style="color:#ff0;font-weight:bold">15</span>]: <span style="color:#fff;font-weight:bold">with</span> tf.Session() <span style="color:#fff;font-weight:bold">as</span> sess:
+            <span style="color:#fff;font-weight:bold">print</span>(sess.run(x))
+<span style="color:#ff0;font-weight:bold">5</span></code></pre></div>
+<p><em><strong>Do we need to do this every time we create a session?</strong> Frankly, the answer is both yes, and no.</em></p>
 
 <p>We need to execute the variable every time it is updated, but we initialize the variables just once. It is not recommended to reinitialize the variables all over because doing so generates duplicate operations.<sup><a href="https://thunderbottom.github.io/posts/variables/#references">3</a></sup></p>
 
-<p><strong><em>Can we update the variables in the session?</em></strong> <em>Yes, that can be done.</em></p>
+<p><strong><em>Can we update the variables in the session?</em></strong> <em>Yes, that can be done and is a pretty normal thing to do.</em></p>
 
-<p>Let’s try it out for the sake of completeness:</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">In [<span style="color:#ff0;font-weight:bold">15</span>]: <span style="color:#fff;font-weight:bold">import</span> tensorflow <span style="color:#fff;font-weight:bold">as</span> tf
-In [<span style="color:#ff0;font-weight:bold">16</span>]: a = tf.Variable(<span style="color:#ff0;font-weight:bold">0</span>, name=<span style="color:#f00">‘</span>a<span style="color:#f00">’</span>)
-In [<span style="color:#ff0;font-weight:bold">17</span>]: init = tf.global_variables_initializer()
-In [<span style="color:#ff0;font-weight:bold">18</span>]: <span style="color:#fff;font-weight:bold">with</span> tf.Session() <span style="color:#fff;font-weight:bold">as</span> sess:
+<p>Let’s try updating the variable out for the sake of completeness:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">In [<span style="color:#ff0;font-weight:bold">16</span>]: <span style="color:#fff;font-weight:bold">import</span> tensorflow <span style="color:#fff;font-weight:bold">as</span> tf
+In [<span style="color:#ff0;font-weight:bold">17</span>]: a = tf.Variable(<span style="color:#ff0;font-weight:bold">0</span>, name=<span style="color:#f00">‘</span>a<span style="color:#f00">’</span>)
+In [<span style="color:#ff0;font-weight:bold">18</span>]: init = tf.global_variables_initializer()
+In [<span style="color:#ff0;font-weight:bold">19</span>]: <span style="color:#fff;font-weight:bold">with</span> tf.Session() <span style="color:#fff;font-weight:bold">as</span> sess:
             sess.run(init)
             <span style="color:#fff;font-weight:bold">for</span> i in <span style="color:#fff;font-weight:bold">range</span>(<span style="color:#ff0;font-weight:bold">5</span>):
                 a = a + i
@@ -173,7 +179,7 @@ In [<span style="color:#ff0;font-weight:bold">18</span>]: <span style="color:#ff
 <span style="color:#ff0;font-weight:bold">10</span></code></pre></div>
 <p>The variables can be updated during the session, and each time the variable is updated, we need to run it to compute the updated value. Once again, we do not need to initialize the variables every time we run the operations. This is because every time we run tf.global_variable_initializer() a duplicate graph for the same operation is initialized.</p>
 
-<p>So that&rsquo;s it for this article, I hope this brief introduction to TensorFlow variables helped you understand the basic functionality of a TensorFlow variable.</p>
+<p>So that&rsquo;s it for this article, I hope this brief introduction helped you understand the basic functionality of TensorFlow variables.</p>
 
 <h5 id="references">References</h5>
 
