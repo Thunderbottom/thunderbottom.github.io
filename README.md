@@ -1,16 +1,11 @@
-### Chinmay D. Pai
-
-[Home][homepage]   [About][about]   [Articles][articles]
+# thunderbottom.github.io
 
 This space will be filled over time with actual content and blog posts.
 
 
-#### Articles
+## Articles
 
-###### Machine Learning
+### Machine Learning
 
-* [Introduction to TensorFlow Variables][articles/machine-learning/ItTV/]
+* [Introduction to TensorFlow Variables](articles/machine-learning/introduction-to-tensorflow-variables.md)
 
-[homepage]: https://thunderbottom.github.io
-[about]: about/
-[articles]: #articles
