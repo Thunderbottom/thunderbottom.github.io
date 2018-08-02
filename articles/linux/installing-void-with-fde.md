@@ -1,7 +1,7 @@
 Installing Void Linux with Full Disk Encryption
 ===============================================
 
-A comprehensive guide to installing Void Linux on your system with full-disk encryption (with `/boot` encryption). At the end of this tutorial, you'll have a completely encrypted and (hopefully) booting Void Linux installation.
+A comprehensive guide to installing Void Linux on your system with full-disk encryption (with `/boot` encryption). At the end of this tutorial, you'll have a completely encrypted and a (hopefully) booting Void Linux installation.
 
 
 # Preparation
@@ -152,19 +152,19 @@ Now, we will `chroot` into our newly installed system and set up the bootloader.
 	$ chroot /mnt /bin/bash
 ```
 
-We now need to create a keyfile to automatically decrypt our encrypted partition on root. Not doing so will require you to type the crypt-pool password twice. On UEFI systems, this is because only `/boot/efi` is unencrypted, and the `/boot` partition still needs to be decrypted to continue booting. And then, you need to enter the password again to decrpt the rootfs.
+We now need to create a keyfile to automatically decrypt our encrypted partition on root. Not doing so will require you to type the crypt-pool password twice. On UEFI systems, this is because only `/boot/efi` is unencrypted, and the `/boot` partition still needs to be decrypted to continue booting. You then need to enter the password again to decrpt the rootfs. So to save yourself from the hassle, it is better to have the boot drive auto-decrypt using keyfile.
 
 ```sh
-	# dd bs=512 count=4 if=/dev/urandom of=/crypto_keyfile.bin
-	# cryptsetup luksAddKey /dev/sdXN /crypto_keyfile.bin
-	# chmod 000 /crypto_keyfile.bin
-	# chmod -R g-rwx,o-rwx /boot
+	$ dd bs=512 count=4 if=/dev/urandom of=/crypto_keyfile.bin
+	$ cryptsetup luksAddKey /dev/sdXN /crypto_keyfile.bin
+	$ chmod 000 /crypto_keyfile.bin
+	$ chmod -R g-rwx,o-rwx /boot
 ```
 
 And then we will add this keyfile to `/etc/crypttab`. To do that, we need to first note down the UUID of the encrypted disk. Replace X and N with the disk letter and the partition number.
 
 ```sh
-	# lsblk -o NAME,UUID | grep sdXN | awk '{print $2}'
+	$ lsblk -o NAME,UUID | grep sdXN | awk '{print $2}'
 ```
 
 We will then add the disk to the crypttab. Open `/etc/crypttab` in your favorite text editor and fill it with the content as follows.
@@ -176,31 +176,31 @@ We will then add the disk to the crypttab. Open `/etc/crypttab` in your favorite
 We need to notify dracut about these things. Dracut is the tool used to generate initramfs images. This is also a good time to set `hostonly=yes` for dracut. This will  make dracut generate initramfs only for the current system (host) instead of a generic image. We will put the two things in separate files for better organization.
 
 ```sh
-	# mkdir -p /etc/dracut.conf.d/
-	# echo 'hostonly=yes' > /etc/dracut.conf.d/00-hostonly.conf
-	# echo 'install_items+="/etc/crypttab /crypto_keyfile.bin"' > /etc/dracut.conf.d/10-crypt.conf
+	$ mkdir -p /etc/dracut.conf.d/
+	$ echo 'hostonly=yes' > /etc/dracut.conf.d/00-hostonly.conf
+	$ echo 'install_items+="/etc/crypttab /crypto_keyfile.bin"' > /etc/dracut.conf.d/10-crypt.conf
 ```
 
 In the next step, we add encryption support to GRUB and make the bootloader aware of the LUKS encrypted disk.
 
 ```sh
-	# echo "GRUB_PRELOAD_MODULES=\"cryptodisk luks\"" >> /etc/default/grub
-	# echo "GRUB_ENABLE_CRYPTODISK=y" >> /etc/default/grub
-	# echo "GRUB_CMDLINE_LINUX=\"cryptdevice=/dev/sdXN rd.luks.crypttab=1 rd.md=0 rd.dm=0 rd.lvm=1 rd.luks=1 rd.luks.allow-discards rd.luks.uuid=<device-UUID>\"" >> /etc/default/grub
+	$ echo "GRUB_PRELOAD_MODULES=\"cryptodisk luks\"" >> /etc/default/grub
+	$ echo "GRUB_ENABLE_CRYPTODISK=y" >> /etc/default/grub
+	$ echo "GRUB_CMDLINE_LINUX=\"cryptdevice=/dev/sdXN rd.luks.crypttab=1 rd.md=0 rd.dm=0 rd.lvm=1 rd.luks=1 rd.luks.allow-discards rd.luks.uuid=<device-UUID>\"" >> /etc/default/grub
 ```
 
 The only thing remaining is to install the bootloader and reconfigure the kernel using dracut.
 
 ```sh
-	# grub-mkconfig -o /boot/grub/grub.cfg
-	# grub-install /dev/sdX
-	# xbps-reconfigure -f $(xbps-query -s linux4 | cut -f 2 -d ' ' | cut -f 1 -d -)
+	$ grub-mkconfig -o /boot/grub/grub.cfg
+	$ grub-install /dev/sdX
+	$ xbps-reconfigure -f $(xbps-query -s linux4 | cut -f 2 -d ' ' | cut -f 1 -d -)
 ```
 
 That's it. Now all you have to do is close the volume group and the LUKS disk, and hope that it reboots into the system.
 
 ```sh
-	# exit && umount -R /mnt
+	$ exit && umount -R /mnt
 	$ vgchange -a n vgpool
 	$ cryptsetup luksClose crypt-pool
 	$ reboot
