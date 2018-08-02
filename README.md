@@ -10,4 +10,5 @@ This space will be filled over time with articles that concern my interests and 
 
 ### GNU/Linux
 
+* [Installing Void Linux with Full Disk Encryption](articles/linux/installing-void-with-fde.md)
 * [Installing Termite on Void Linux](articles/linux/installing-termite-on-void.md)
