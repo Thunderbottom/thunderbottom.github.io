@@ -1,7 +1,6 @@
 # thunderbottom.github.io
 
-This space will be filled over time with actual content and blog posts.
-
+This space will be filled over time with articles that concern my interests and musings.
 
 ## Articles
 
@@ -9,3 +8,6 @@ This space will be filled over time with actual content and blog posts.
 
 * [Introduction to TensorFlow Variables](articles/machine-learning/introduction-to-tensorflow-variables.md)
 
+### GNU/Linux
+
+* [Installing Termite on Void Linux](articles/linux/installing-termite-on-void.md)
