@@ -1,3 +1,6 @@
+If you are a normal person and prefer a PDF, you can find it [here](files/resume.pdf).
+
+
 Chinmay D. Pai
 ==============
 
@@ -14,7 +17,7 @@ Education
 Publications
 ============
 
-* K. Potdar, T. Pardawala and C. Pai. *"A Comparative Study of Categorical Variable Encoding Techniques for Neural Network Classiers."* In International Journal of Computer Applications, Vol. 175, no. 4, pp. 7-9, October 2017.
+* K. Potdar, T. Pardawala and C. Pai. *"A Comparative Study of Categorical Variable Encoding Techniques for Neural Network Classifiers."* In International Journal of Computer Applications, Vol. 175, no. 4, pp. 7-9, October 2017.
 
 * K. Potdar, C. Pai and S. Akolkar. *"A Convolutional Neural Network based Live Object Recognition System as Blind Aid."* Accepted at ICACCT 2018, IEEE Conference, (unpublished).
 
