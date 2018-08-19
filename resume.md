@@ -1,33 +1,44 @@
 Chinmay D. Pai
 ==============
 
-### Education
+
+Education
+=========
 
 #### WIEECT, Mumbai University (August 2014 - June 2018)
 
-* CGPA: 7.32/10 (2 years: 7.96/10).
-* Thesis title: Portable aid system for the visually impaired.
+* **CGPA:** 7.32/10 (2 years: 7.96/10).
+* **Thesis title:** Portable aid system for the visually impaired.
 
-### Publications
 
-* K. Potdar, T. Pardawala and C. Pai. A Comparative Study of Categorical Variable Encoding Techniques for Neural Network Classiers. In International Journal of Computer Applications, Vol. 175, no. 4, pp. 7-9, October 2017.
+Publications
+============
 
-* K. Potdar, C. Pai and S. Akolkar. A Convolutional Neural Network based Live Object Recognition System as Blind Aid. Accepted at ICACCT 2018, IEEE Conference, (unpublished).
+* K. Potdar, T. Pardawala and C. Pai. *"A Comparative Study of Categorical Variable Encoding Techniques for Neural Network Classiers."* In International Journal of Computer Applications, Vol. 175, no. 4, pp. 7-9, October 2017.
 
-### Professional Experience
+* K. Potdar, C. Pai and S. Akolkar. *"A Convolutional Neural Network based Live Object Recognition System as Blind Aid."* Accepted at ICACCT 2018, IEEE Conference, (unpublished).
+
+
+Professional Experience
+=======================
 
 #### Scrapsheet Inc, Mumbai, India
-*Machine Learning Intern*	July 2018 - Present
 
-Worked on a neural network classifier flask API for __obscenity detection__ and __toxic comment classification__.
+* *Machine Learning Intern* **(July 2018 - Present)**
 
-### Technical Skills
+	+ Worked on a neural network classifier flask API for __obscenity detection__ and __toxic comment classification__.
+
+
+Technical Skills
+================
 
 * **Programming:** Python, R, Java, Linux shell scripting.
 * **Tools:** Pandas, Numpy, Scipy, TensorFlow, Git, Docker, Kubernetes, LaTeX.
 * **Database:** SQL, Redis, MongoDB.
 
-### Projects
+
+Projects
+========
 
 ###### Academic:
 
@@ -45,6 +56,7 @@ Worked on a neural network classifier flask API for __obscenity detection__ and 
 
 The following list in inexhaustive and unordered. For more, check out my [GitHub](https://github.com/Thunderbottom).
 
+
 * **UltimateBrowserProject:** An open-source android web browser based on WebView. Over 100,000 downloads on XDA forums and 60,000 concurrent sessions in April 2015.
 
 * **GitSync:** Python script to lazy-sync and update all local and remote git repositories.
@@ -53,7 +65,9 @@ The following list in inexhaustive and unordered. For more, check out my [GitHub
 
 * **Transpy**: A flask web app to demonstrate loss in translation using Google Translate API.
 
-### Extra-curriculars and Responsibilities
+
+Extra-curriculars and Responsibilities
+======================================
 
 * **Coursera Stanford Machine Learning** certification.
 
