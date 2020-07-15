@@ -2,12 +2,11 @@
 layout: page
 title: About Me
 ---
+Hey there! My name is Chinmay Pai, and I'm from Mumbai, India. This page is a pretty good place to start if you want to learn a bit more about me. My pursuits revolve around *nix, open-source, privacy, and system infrastructure.
 
-Hey there! I'm Chinmay Pai. I'm from Mumbai, India, and I'm passionate about *nix, open source, privacy, and system infrastructure. This is a good place to start if you want to learn more about me.
+I have been working as a professional DevOps and Security Engineer for the past couple of years. In that period, I have worked on a variety of problems ranging from server management and orchestration to enhancing the security and monitoring infrastructure. I currently work as a DevOps and Security Engineer at [Frappe](https://frappe.io).
 
-I have been working as a professional DevOps and Security Engineer for the past couple of years. In that time span I have worked on a variety of problems ranging from server management and orchestration, to enhancing the security and monitoring infrastructure. I currently work as a DevOps and Security Engineer at Frappe.
-
-In my free time I try to learn new things, play videogames, read, and occasionally compose music. This is my personal blog unaffiliated to the company I work for. Over time, this space will be filled with articles that concern my interests and musings. If you wish to receive updates for my posts, you may subscribe to the [atom feed](/atom.xml).
+In my free time, I try to learn new things, play videogames, read, and occasionally [compose music](https://soundcloud.com/harmonicseventhnoiseprotocol). This blog is my personal space, and my views are not associated with anyone else. Over time, this space will fill up with articles that concern my interests and musings. If you wish to receive updates for my posts, you may subscribe to the [atom feed](/atom.xml).
 
 Life is daijoubu.
 
