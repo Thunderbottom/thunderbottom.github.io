@@ -25,7 +25,9 @@
 
   &:hover,
   &:focus {
-    text-decoration: underline;
+    background-color: var(--code-bg);
+    padding-top: 0.15rem;
+    padding-bottom: 0.15rem;
   }
 }
 
@@ -38,6 +40,10 @@
   font-family: var(--heading-font);
 }
 
+.post-home {
+  font-family: var(--heading-font);
+  font-size: 85%;
+}
 
 // Related posts
 .related {
@@ -49,6 +55,7 @@
 }
 
 .related-posts {
+  font-family: var(--heading-font);
   padding-left: 0;
   list-style: none;
 

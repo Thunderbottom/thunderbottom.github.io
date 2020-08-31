@@ -9,13 +9,12 @@ pre {
 }
 
 code {
-  font-size: 80%;
+  font-size: 85%;
 }
 
 code.highlighter-rouge {
     padding: 0.25em;
-    background-color: var(--code-bg);
-    border-radius: var(--border-radius);
+    color: var(--link-color);
 }
 
 pre {
